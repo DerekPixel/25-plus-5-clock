@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {timeToString, convertMinutesToMilliseconds} from '../functions.js';
 
-const Timer = ({breakLength, sessionLength}) => {
+const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) => {
 
   var breakMilliseconds = convertMinutesToMilliseconds(breakLength);
   var sessionMilliseconds = convertMinutesToMilliseconds(sessionLength);
@@ -41,18 +41,36 @@ const Timer = ({breakLength, sessionLength}) => {
   }
 
   function start() {
-    console.log('start');
     startTime = Date.now();
     isTiming.current = true;
     timeInterval.current = setInterval(() => {
+      timerTime.current -= (Date.now() - startTime);
+      startTime = Date.now();
       if(timerTime.current <= 0) {
         timerTime.current = sessionOrBreak.current === 'session' ? breakMilliseconds : sessionMilliseconds;
         sessionOrBreak.current = sessionOrBreak.current === 'session' ? 'break' : 'session';
       }
-      timerTime.current -= (Date.now() - startTime);
-      startTime = Date.now();
       setDisplay(timeToString(timerTime.current));
     }, 5);
+  }
+
+  function reset() {
+    if(isTiming.current === true) {
+      clearInterval(timeInterval.current);
+      isTiming.current = false;
+      setSessionLength(25);
+      setBreakLength(5);
+      setDisplay(timeToString(sessionMilliseconds));
+      timerTime.current = sessionMilliseconds;
+      sessionOrBreak.current = 'session';
+    } else {
+      clearInterval(timeInterval.current);
+      setSessionLength(25);
+      setBreakLength(5);
+      setDisplay(timeToString(sessionMilliseconds));
+      timerTime.current = sessionMilliseconds;
+      sessionOrBreak.current = 'session';
+    }
   }
 
   return (
@@ -65,7 +83,10 @@ const Timer = ({breakLength, sessionLength}) => {
          id="start_stop"
          onClick={() => handleStartAndStop()}
       >Start / Stop</button>
-      <button id="reset">Reset</button>
+      <button 
+        id="reset"
+        onClick={() => reset()}
+      >Reset</button>
   </div>
   )
 }
