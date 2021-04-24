@@ -48,6 +48,8 @@ function App() {
       <Timer 
         breakLength={breakLength} 
         sessionLength={sessionLength}
+        setBreakLength={(newLength) => setBreakLength(newLength)}
+        setSessionLength={(newLength) => setSessionLength(newLength)}
       />
 
     </div>
