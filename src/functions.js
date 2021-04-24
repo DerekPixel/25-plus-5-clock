@@ -20,8 +20,9 @@ export function convertMinutesToMilliseconds(timeInSeconds) {
 
 export function timeToString(time) {
   var diffInHr = time / 3600000;
-  var hh = Math.floor(diffInHr).toString().padStart(2, "0");
-  var diffInMin = (diffInHr - hh) * 60;
+  // var hh = Math.floor(diffInHr).toString().padStart(2, "0");
+  // var diffInMin = (diffInHr - hh) * 60; this is the original
+  var diffInMin = (diffInHr) * 60;
   var mm = Math.floor(diffInMin).toString().padStart(2, "0");
   var diffInSec = (diffInMin - mm) * 60;
   var ss = Math.floor(diffInSec).toString().padStart(2, "0");
