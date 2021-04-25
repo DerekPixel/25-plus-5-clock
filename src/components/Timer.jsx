@@ -28,7 +28,14 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
         setDisplay(timeToString(convertMinutesToMilliseconds(sessionLength)))
       }
     }
-  }, [sessionLength, breakLength])
+  }, [sessionLength, breakLength]);
+
+  useEffect(() => {
+    if(display === '00:00') {
+      playSound();
+    }
+
+  }, [display]);
 
   function handleStartAndStop() {
     if(isTiming.current) {
@@ -55,7 +62,8 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
   }
 
   function reset() {
-    if(isTiming.current === true) {
+      stopSound();
+      if(isTiming.current === true) {
       clearInterval(timeInterval.current);
       isTiming.current = false;
       setSessionLength(25);
@@ -73,6 +81,19 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
     }
   }
 
+  function playSound() {
+    const sound = document.getElementById('beep');
+    sound.currentTime = 0;
+    sound.play();
+  }
+
+  function stopSound() {
+    const sound = document.getElementById('beep');
+    sound.pause();
+    sound.currentTime = 0;
+  }
+
+
   return (
     <div>
       <div id="timer-label">
@@ -87,6 +108,10 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
         id="reset"
         onClick={() => reset()}
       >Reset</button>
+      <audio 
+        id='beep'
+        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+      ></audio>
   </div>
   )
 }
