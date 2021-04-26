@@ -95,10 +95,12 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
 
 
   return (
-    <div>
-      <div id="timer-label">
+    <div
+      className='timer'
+    >
+      <h2 id="timer-label">
         {sessionOrBreak.current === 'session' ? 'SESSION' : 'BREAK'}
-      </div>
+      </h2>
       <div id="time-left">{display}</div>
       <button
          id="start_stop"
