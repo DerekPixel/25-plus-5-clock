@@ -101,15 +101,23 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
       <h2 id="timer-label">
         {sessionOrBreak.current === 'session' ? 'SESSION' : 'BREAK'}
       </h2>
-      <div id="time-left">{display}</div>
-      <button
-         id="start_stop"
-         onClick={() => handleStartAndStop()}
-      >Start / Stop</button>
-      <button 
-        id="reset"
-        onClick={() => reset()}
-      >Reset</button>
+      <div className="time-left-container">
+        <div id="time-left">{display}</div>
+      </div>
+      <div className="timer-btns">
+        <button
+           id="start_stop"
+           onClick={() => handleStartAndStop()}
+        >
+          <span class="iconify" data-icon="fluent:video-play-pause-24-regular"></span>
+        </button>
+        <button
+          id="reset"
+          onClick={() => reset()}
+        >
+          <span class="iconify" data-icon="fluent:arrow-reset-24-filled"></span>
+        </button>
+      </div>
       <audio 
         id='beep'
         src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
