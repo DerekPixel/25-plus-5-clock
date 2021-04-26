@@ -63,6 +63,10 @@ body {
   height: 100vh;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 
 
 header {
@@ -140,9 +144,32 @@ h2 {
   text-align: center;
 }
 
+.time-left-container {
+  border: 0.2em white solid;
+  border-radius: 50%;
+  margin: 0.6em 0 0.8em 0;
+  padding-bottom: 100%;
+  position: relative;
+  width: 100%;
+}
+
 #time-left {
-  display: table-cell;
-  height: 100px;
-  width: 100px;
-  vertical-align: middle;
+  font-size: 2em;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#start_stop,
+#reset {
+  font-size: 30px;
+}
+
+#start_stop {
+  margin-right: 10px;
+}
+
+#reset {
+  margin-left: 10px;
 }
