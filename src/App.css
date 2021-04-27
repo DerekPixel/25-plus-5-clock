@@ -54,6 +54,7 @@ box-sizing: border-box;
 :root {
   --accent-blue: rgb(25, 102, 255);
   --main-background-color: rgb(35, 35, 35);
+  --inbetween-background-color: rgb(27, 27, 27);
   --darker-background-color: rgb(20, 20, 20);
 }
 
@@ -63,20 +64,36 @@ body {
   height: 100vh;
 }
 
+button {
+  background-color: var(--darker-background-color);
+  border: 2px solid var(--accent-blue);
+  border-radius: 10px;
+  color: white;
+  transition: 0.2s color;
+  transition: 0.2s background-color;
+}
+
 button:hover {
+  background-color: white;
+  color: black;
   cursor: pointer;
 }
 
-
+/* 
+===================================================
+HEADER
+===================================================
+*/
 
 header {
   align-items: center;
   background-color: var(--darker-background-color);
   color: white;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 10px 10px 20px 50px;
-  margin: 5px 5px 20px 5px;
+  padding: 10px 10px 10px 45px;
+  margin: 5px 5px 15px 5px;
 }
 
 h1 {
@@ -84,6 +101,7 @@ h1 {
   border-bottom-width: 5px;
   border-bottom-color: var(--accent-blue);
   border-bottom-style: solid;
+  margin-bottom: 10px;
 }
 
 .creds-div {
@@ -103,7 +121,11 @@ a:visited {
   color: darksalmon;
 }
 
-
+/* 
+===================================================
+MAIN CONTAINER
+===================================================
+*/
 
 .container {
   align-items: center;
@@ -113,16 +135,29 @@ a:visited {
 }
 
 h2 {
+  border-bottom: 4px var(--accent-blue) solid;
   font-size: 30px;
 }
 
+/* 
+===================================================
+CONTROLS
+===================================================
+*/
+
 .controls {
+  align-items: center;
   display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  max-width: 480px;
 }
 
 .break,
 .session {
+  background-color: var(--inbetween-background-color);
   margin: 0 15px 15px 15px;
+  padding: 1em;
 }
 
 .break-btns,
@@ -132,20 +167,35 @@ h2 {
   margin-top: 15px;
 }
 
-.length {
+.increment,
+.decrement {
   font-size: 20px;
+}
+
+.length {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
   margin: 0 10px;
   text-align: center;
   width: 3ch;
 }
 
+/* 
+===================================================
+TIMER
+===================================================
+*/
 
 .timer {
+  background-color: var(--inbetween-background-color);
   text-align: center;
+  padding: 1em;
 }
 
 .time-left-container {
-  border: 0.2em white solid;
+  border: 0.2em var(--accent-blue) solid;
   border-radius: 50%;
   margin: 0.6em 0 0.8em 0;
   padding-bottom: 100%;
@@ -172,4 +222,23 @@ h2 {
 
 #reset {
   margin-left: 10px;
+}
+
+/* 
+===================================================
+MEDIA QUERIES
+===================================================
+*/
+
+@media screen and (max-width: 585px) {
+  header {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  @media screen and (max-width: 330px) {
+    h1 {
+      font-size: 45px;
+    }
+  }
 }
