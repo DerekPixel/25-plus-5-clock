@@ -109,13 +109,13 @@ const Timer = ({breakLength, sessionLength, setBreakLength, setSessionLength}) =
            id="start_stop"
            onClick={() => handleStartAndStop()}
         >
-          <span class="iconify" data-icon="fluent:video-play-pause-24-regular"></span>
+          <span className="iconify" data-icon="fluent:video-play-pause-24-regular"></span>
         </button>
         <button
           id="reset"
           onClick={() => reset()}
         >
-          <span class="iconify" data-icon="fluent:arrow-reset-24-filled"></span>
+          <span className="iconify" data-icon="fluent:arrow-reset-24-filled"></span>
         </button>
       </div>
       <audio 
